@@ -60,7 +60,7 @@ MAIL_FROM_NAME="your email from"
 <code>
 
 resources/views/form/index.blade.php
-
+```
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -129,6 +129,7 @@ resources/views/form/index.blade.php
 </body>
 
 </html>
+```
 </code>
 </pre>
 
