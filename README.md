@@ -5,9 +5,21 @@
 ## Instruction
 
 #### Basic Installation
-- Run 
-``` bash git clone https://github.com/tanzimul/laravel-form-pdf-email.git ```
+
+``` bash 
+git clone https://github.com/tanzimul/laravel-form-pdf-email.git
+cd laravel-form-pdf-email 
+composer install
+npm install
+npm run dev
+```
+
 - Rename .env.example file to .env
+
+``` bash
+php artisan key:generate
+```
+
 - Change the mailer configuration
 <p>Email configuration for Gmail</p>
 <pre>
@@ -23,17 +35,9 @@ MAIL_FROM_NAME="your email from"
 </code>
 </pre>
 
-- Open the console
-
-``` bash 
-cd laravel-form-pdf-email root directory 
-composer install
-npm install
-npm run dev
-php artisan key:generate
+``` bash
 php artisan serve
 ```
-
 - Your app will serve on [http://localhost:8000/](http://localhost:8000/)
 - Enjoy!
 
