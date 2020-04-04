@@ -38,39 +38,54 @@
     </style>
 
     <!-- Scripts -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>
     <div class="container">
         @if(session('success'))
-            <div class="alert alert-success" id="alertMessage">
-                {{ session('success') }}
-            </div>
+        <div class="alert alert-success" id="alertMessage">
+            {{ session('success') }}
+        </div>
+        @endif
+        @if(session('error'))
+        <div class="alert alert-danger" id="alertMessage">
+            {{ session('error') }}
+        </div>
         @endif
         <form action="{{ route('generate') }}" method="post" class="full-height">
             @csrf
             <div class="form-group">
                 <label for="email">Your Email</label>
-                <input type="text" name="email" id="email" class="form-control" placeholder="please type your email">
+                <input type="email" name="email" id="email" class="form-control" placeholder="please type your email" required>
             </div>
             <div class="form-group">
                 <label for="name">Your Name</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="please type your name">
+                <input type="text" name="name" id="name" class="form-control" placeholder="please type your name" required>
             </div>
             <div class="form-group">
                 <label for="subject">Subject</label>
-                <input type="text" name="subject" id="subject" class="form-control" placeholder="please type email subject">
+                <input type="text" name="subject" id="subject" class="form-control" placeholder="please type email subject" required>
             </div>
             <div class="form-group">
                 <label for="body">Email Body</label>
-                <textarea name="body" id="body" cols="30" rows="10" class="form-control" placeholder="please type email body"></textarea>
+                <textarea name="body" id="body" cols="30" rows="10" class="form-control" placeholder="please type email body" required></textarea>
             </div>
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>
         </form>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+    <script>
+        $(function() {
+            setTimeout(function() {
+                $("#alertMessage").fadeOut("slow");
+            }, 3000)
+        })
+    </script>
 </body>
 
 </html>

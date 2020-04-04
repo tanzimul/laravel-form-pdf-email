@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('form.index');
 });
 
+Route::post('/generate', 'FormPdfEmailController@generate')->name('generate');
