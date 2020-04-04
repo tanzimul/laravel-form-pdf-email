@@ -22,15 +22,18 @@ MAIL_FROM_ADDRESS="your email from address"
 MAIL_FROM_NAME="your email from"
 </code>
 </pre>
-- Open the console and cd laravel-form-pdf-email root directory
-- Run 
+
+- Open the console
+
 ``` bash 
+cd laravel-form-pdf-email root directory 
 composer install
 npm install
 npm run dev
 php artisan key:generate
 php artisan serve
 ```
+
 - Your app will serve on [http://localhost:8000/](http://localhost:8000/)
 - Enjoy!
 
