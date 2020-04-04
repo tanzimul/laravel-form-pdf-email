@@ -5,10 +5,12 @@
 ## Instruction
 
 <p>Install Laravel</p>
-***
+<pre>
+<code>
 composer create-project --prefer-dist laravel/laravel laravel-form-pdf-email "6.*"
 cd laravel-form-pdf-email
-***
+</code>
+</pre>
 
 <p>Scaffold Bootstrap 4</p>
 ***
