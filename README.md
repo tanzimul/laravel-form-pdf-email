@@ -33,7 +33,7 @@ php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 #### Configure Email
 
 <p>Email configuration for Gmail</p>
-``` bash
+``` env
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
@@ -119,9 +119,8 @@ resources/views/form/index.blade.php
 </html>
 ```
 
-``` css
-
 resources/sass/app.scss
+``` css
 html,
 body {
     background-color: #fff;
@@ -144,9 +143,8 @@ label {
 }
 ```
 
-``` html
 resources/views/mails/mail.blade.php
-
+``` html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -166,11 +164,10 @@ resources/views/mails/mail.blade.php
     <p>Email Version</p>
 </body>
 </html>
-
 ```
-``` html
-resources/views/pdf/pdf.blade.php
 
+resources/views/pdf/pdf.blade.php
+``` html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,48 +185,60 @@ resources/views/pdf/pdf.blade.php
     <p>Pdf Version</p>
 </body>
 </html>
-
 ```
 
 
-
+``` php
 web.php
 Route::post('/generate', 'FormPdfEmailController@generate')->name('generate');
+```
 
-console
+``` bash
+run this in terminal
 php artisan make:controller FormPdfEmailController
+```
 
 FormPdfEmailController.php
-public function generate(Request $request)
+``` php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use PDF;
+use Mail;
+use env;
+
+class FormPdfEmailController extends Controller
 {
-	$data = $request->all();
+    public function generate(Request $request)
+    {
+        $data = $request->all();
 
-	$data['replyTo'] = env('MAIL_FROM_ADDRESS');
-	$data['replyToName'] = env('MAIL_FROM_NAME');
+        $data['replyTo'] = env('MAIL_FROM_ADDRESS');
+        $data['replyToName'] = env('MAIL_FROM_NAME');
 
-	$pdf = PDF::loadView('mails.mail', compact('data'));
-	try{
-		Mail::send('mails.mail', compact('data'), function ( $message) use ( $data, $pdf) {
-		$message
-			->to($data['email'], $data['name'])
-			->replyTo($data['replyTo'], $data['replyToName'])
-			->subject($data['subject'])
-			->attachData($pdf->output(), "attachment.pdf");
-		});
-	}catch(JWTException $exception){
-		$this->serverstatuscode = "0";
-		$this->serverstatusdes = $exception->getMessage();
-	}
-	if (Mail::failures()) {
-		$this->statusdesc  =   "Error sending mail";
-		$this->statuscode  =   "0";
-	}else{
-	   $this->statusdesc  =   "Message sent Succesfully";
-	   $this->statuscode  =   "1";
-	   $this->data        =   $data;
-	}
-	return response()->json(compact('this'));
+        $pdf = PDF::loadView('pdf.pdf', compact('data'));
+        try {
+            Mail::send('mails.mail', compact('data'), function ($message) use ($data, $pdf) {
+                $message
+                    ->to($data['email'], $data['name'])
+                    ->replyTo($data['replyTo'], $data['replyToName'])
+                    ->subject($data['subject'])
+                    ->attachData($pdf->output(), "attachment.pdf");
+            });
+        } catch (JWTException $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+        if (Mail::failures()) {
+            return redirect()->back()->with('error', 'Error sending mail');
+        } else {
+            return redirect()->back()->with('success', 'Email sent successfully');
+        }
+        
+    }
 }
+```
 
 
 ## License
