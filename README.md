@@ -4,6 +4,39 @@
 
 ## Instruction
 
+#### Basic Installation
+- Run 
+``` bash git clone https://github.com/tanzimul/laravel-form-pdf-email.git ```
+- Rename .env.example file to .env
+- Change the mailer configuration
+<p>Email configuration for Gmail</p>
+<pre>
+<code>
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME="your email address"
+MAIL_PASSWORD="your email password"
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="your email from address"
+MAIL_FROM_NAME="your email from"
+</code>
+</pre>
+- Open the console and cd laravel-form-pdf-email root directory
+- Run 
+``` bash 
+composer install
+npm install
+npm run dev
+php artisan key:generate
+php artisan serve
+```
+- Your app will serve on [http://localhost:8000/](http://localhost:8000/)
+- Enjoy!
+
+
+
+## Documentation
 #### Install Laravel
 ``` bash
 composer create-project --prefer-dist laravel/laravel laravel-form-pdf-email "6.*"
@@ -21,19 +54,24 @@ npm run dev
 #### Install Laravel DomPdf Package
 ``` bash
 composer require barryvdh/laravel-dompdf
+```
+``` php
 'providers' => [ 
 	Barryvdh\DomPDF\ServiceProvider::class,
 ]
 'aliases' => [
 	'PDF' => Barryvdh\DomPDF\Facade::class,
 ]
+```
+``` bash
 php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 ```
 
 #### Configure Email
 
 <p>Email configuration for Gmail</p>
-```
+<pre>
+<code>
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
@@ -42,7 +80,8 @@ MAIL_PASSWORD="your email password"
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="your email from address"
 MAIL_FROM_NAME="your email from"
-```
+</code>
+</pre>
 
 
 #### Create Blade Files
@@ -187,14 +226,18 @@ resources/views/pdf/pdf.blade.php
 </html>
 ```
 
-
-``` php
+#### Change Route
 web.php
+``` php
+
+Route::get('/', function () {
+    return view('form.index');
+});
 Route::post('/generate', 'FormPdfEmailController@generate')->name('generate');
 ```
 
+#### Create Controller
 ``` bash
-run this in terminal
 php artisan make:controller FormPdfEmailController
 ```
 
