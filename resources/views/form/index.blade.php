@@ -48,7 +48,7 @@
                 {{ session('success') }}
             </div>
         @endif
-        <form action="" method="post" class="full-height">
+        <form action="{{ route('generate') }}" method="post" class="full-height">
             @csrf
             <div class="form-group">
                 <label for="email">Your Email</label>
