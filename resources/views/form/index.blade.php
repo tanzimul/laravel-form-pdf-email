@@ -14,31 +14,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        html,
-        body {
-            background-color: #fff;
-            color: #111;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-            width: 767px;
-            margin: 0 auto;
-        }
-
-        label {
-            font-weight: 900;
-            font-size: 1.5rem;
-        }
-    </style>
 
     <!-- Scripts -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 

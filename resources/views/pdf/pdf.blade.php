@@ -8,9 +8,10 @@
 </head>
 <body>
     <h2>Your submitted data</h2>
-    <h5><b>Your Email address :</b> {{ $data['email'] }}</h5>
-    <h5><b>Your Name :</b> {{ $data['name'] }}</h5>
-    <h5><b>Subject: </b> {{ $data['subject'] }}</h5>
-    <h5><b>Body: </b> {{ $data['body'] }}</h5>
+    <h4><b>Your Email address :</b> {{ $data['email'] }}</h4>
+    <h4><b>Your Name :</b> {{ $data['name'] }}</h4>
+    <h4><b>Subject: </b> {{ $data['subject'] }}</h4>
+    <h4><b>Body: </b> {{ $data['body'] }}</h4>
+    <p>Pdf Version</p>
 </body>
 </html>
