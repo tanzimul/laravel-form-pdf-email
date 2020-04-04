@@ -4,7 +4,7 @@
 
 ## Instruction
 
-<p>Install Laravel</p>
+#### Install Laravel
 <pre>
 <code>
 composer create-project --prefer-dist laravel/laravel laravel-form-pdf-email "6.*"
@@ -12,14 +12,20 @@ cd laravel-form-pdf-email
 </code>
 </pre>
 
-<p>Scaffold Bootstrap 4</p>
-***
+#### Scaffold Bootstrap 4
+<pre>
+<code>
 composer require laravel/ui:^1.0 --dev
 php artisan ui bootstrap
 npm install
 npm run dev
-***
+</code>
+</pre>
 
+#### Install Laravel DomPdf Package
+
+<pre>
+<code>
 composer require barryvdh/laravel-dompdf
 'providers' => [ 
 	Barryvdh\DomPDF\ServiceProvider::class,
@@ -28,8 +34,15 @@ composer require barryvdh/laravel-dompdf
 	'PDF' => Barryvdh\DomPDF\Facade::class,
 ]
 php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
+</pre>
+</code>
 
 
+#### Configure Email
+
+<p>Email configuration for Gmail</p>
+<pre>
+<code>
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
@@ -38,6 +51,13 @@ MAIL_PASSWORD="your email password"
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="your email from address"
 MAIL_FROM_NAME="your email from"
+</pre>
+</code>
+
+#### Create Blade Files
+
+<pre>
+<code>
 
 resources/views/form/index.blade.php
 
@@ -109,7 +129,12 @@ resources/views/form/index.blade.php
 </body>
 
 </html>
+</code>
+</pre>
 
+
+<pre>
+<code>
 
 resources/sass/app.scss
 html,
@@ -133,7 +158,11 @@ label {
     font-size: 1.5rem;
 }
 
+</pre>
+</code>
 
+<pre>
+<code>
 
 resources/views/mails/mail.blade.php
 
@@ -157,6 +186,12 @@ resources/views/mails/mail.blade.php
 </body>
 </html>
 
+</pre>
+</code>
+
+
+<pre>
+<code>
 
 resources/views/pdf/pdf.blade.php
 
@@ -177,6 +212,10 @@ resources/views/pdf/pdf.blade.php
     <p>Pdf Version</p>
 </body>
 </html>
+
+</pre>
+</code>
+
 
 
 web.php
