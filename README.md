@@ -33,7 +33,7 @@ php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 #### Configure Email
 
 <p>Email configuration for Gmail</p>
-``` env
+```
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
